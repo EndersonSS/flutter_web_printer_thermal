@@ -98,21 +98,20 @@ class PrinterWeb {
 }
 
 void snackbar(BuildContext context, {required String msg, required ContentType contentType}) {
-  final materialBanner = MaterialBanner( 
+  final showSnackBar = SnackBar( 
     elevation: 0,
-    backgroundColor: Colors.transparent,
-    forceActionsBelow: true,
+    backgroundColor: Colors.transparent, 
     content: AwesomeSnackbarContent(
       title: 'Opaa!!',
+      
       message:
           msg,
       contentType: contentType,
       inMaterialBanner: true,
-    ),
-    actions: const [SizedBox.shrink()],
+    ), 
   );
 
   ScaffoldMessenger.of(context)
     ..hideCurrentMaterialBanner()
-    ..showMaterialBanner(materialBanner);
+    ..showSnackBar(showSnackBar);
 }

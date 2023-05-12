@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Teste de impressão'),
     );
   }
 }
@@ -31,7 +31,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   void _printer() {
-    PrinterWeb printerWeb = PrinterWeb('Teste de impressão');
+    String format =
+        // ignore: prefer_interpolation_to_compose_strings
+        '\x1B' +
+            '\x61' +
+            '\x31' +
+            '\x1D' +
+            '\x21' +
+            '\x00' +
+            'REALIZANDO TESTE DE IMP\n\n' +
+            '\x1B' +
+            '\x45' +
+            '\x0D' +
+            '================================\n';
+    PrinterWeb printerWeb = PrinterWeb(format);
 
     printerWeb.connectToPrinter(context);
   }
@@ -41,16 +54,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'Teste de impressão',
-            ),
-          ],
-        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _printer,
